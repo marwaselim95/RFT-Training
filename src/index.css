@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #e8e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-card;
+  }
+
+  /* Neon button base */
+  .btn-neon-cyan {
+    @apply bg-neon-cyan/10 border border-neon-cyan text-neon-cyan font-semibold rounded-xl
+           hover:bg-neon-cyan/20 hover:shadow-neon-cyan transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-neon-cyan/50 active:scale-95;
+  }
+
+  .btn-neon-purple {
+    @apply bg-neon-purple/10 border border-neon-purple text-neon-purple font-semibold rounded-xl
+           hover:bg-neon-purple/20 hover:shadow-neon-purple transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-neon-purple/50 active:scale-95;
+  }
+
+  .btn-neon-green {
+    @apply bg-neon-green/10 border border-neon-green text-neon-green font-semibold rounded-xl
+           hover:bg-neon-green/20 hover:shadow-neon-green transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-neon-green/50 active:scale-95;
+  }
+
+  .btn-neon-red {
+    @apply bg-neon-red/10 border border-neon-red text-neon-red font-semibold rounded-xl
+           hover:bg-neon-red/20 hover:shadow-neon-red transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-neon-red/50 active:scale-95;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass-card p-5 flex flex-col gap-2;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-text-muted text-xs font-mono uppercase tracking-widest;
+  }
+
+  /* Neon text */
+  .neon-cyan { color: #00e5ff; text-shadow: 0 0 12px rgba(0, 229, 255, 0.6); }
+  .neon-purple { color: #bf5af2; text-shadow: 0 0 12px rgba(191, 90, 242, 0.6); }
+  .neon-green { color: #39ff14; text-shadow: 0 0 12px rgba(57, 255, 20, 0.6); }
+  .neon-red { color: #ff3366; text-shadow: 0 0 12px rgba(255, 51, 102, 0.6); }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-1.5 bg-border rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, #00e5ff, #bf5af2);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+  }
+}
+
+@layer utilities {
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a3a #0a0a0f;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 5px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: #0a0a0f; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background-color: #2a2a3a; border-radius: 4px; }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #00e5ff, #bf5af2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-green {
+    background: linear-gradient(135deg, #39ff14, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Blur overlay */
+  .blur-overlay {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+/* Custom recharts tooltip */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Background grid lines */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
